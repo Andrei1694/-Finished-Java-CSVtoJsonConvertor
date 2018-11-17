@@ -1,11 +1,11 @@
 package com.ing.devschool.Conversion;
 import com.ing.devschool.FormatPackage.CsvFormat;
 import com.ing.devschool.FormatPackage.JsonFormat;
-import com.ing.devschool.Transaction;
+import com.ing.devschool.Model.Transaction;
 import java.util.*;
 
 
-//<T extends CsvFormat & Readable, V extends JsonFormat & Writable>  extends FormatConvertor<T,V>
+
 public class CsvToJsonConverter{
 
     public void convert() {
@@ -23,14 +23,15 @@ public class CsvToJsonConverter{
             String date = record[0];
             String item = record[3];
             Transaction t = new Transaction(date,l);
+
             if(!hashList.containsKey(l)){
-                hashList.put(l,t);
-                hashList.get(l).addToitemsSummary(item);
+                hashList.put(l ,t);
+                hashList.get(l ).addToitemsSummary(item);
             }else{
                 hashList.get(l).addToitemsSummary(item);
             }
         }
-//        this.printHashList(hashList);
+
         return hashList;
     }
 
@@ -46,10 +47,7 @@ public class CsvToJsonConverter{
 
     public void WriteObjectToJson(HashMap<Long,Transaction> hashlist){
         JsonFormat js = new JsonFormat();
-        List<Transaction> transactions = new ArrayList<>(hashlist.values());
-//        for(Transaction t : transactions){
-//            js.write(t);
-//        }
+//        List<Transaction> transactions = new ArrayList<>(hashlist.values());
         js.write(hashlist);
         System.out.println("Finished");
     }

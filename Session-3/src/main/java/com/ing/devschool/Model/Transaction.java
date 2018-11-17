@@ -1,4 +1,4 @@
-package com.ing.devschool;
+package com.ing.devschool.Model;
 
 
 
